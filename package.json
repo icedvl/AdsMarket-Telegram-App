@@ -7,7 +7,7 @@
   "scripts": {
     "dev:watch": "NODE_ENV=development parcel build ../src/index.html --dist-dir ./dev --no-cache && NODE_ENV=development webpack watch --mode=development",
     "dev:electron": "ENV=development nodemon --exec electron ./pre_build/app.js",
-	
+
     "build:client": "NODE_ENV=production parcel build ../src/index.html --dist-dir ./pre_build --no-cache",
     "build:app": "NODE_ENV=production webpack build --mode=production",
     "build:test": "npm run build:client && npm run build:app && electron-builder build --mac --dir && rm -r pre_build",
@@ -16,12 +16,8 @@
     "deploy": "npm run pre_build && electron-builder build --mac --win --publish always && rm -r pre_build",
     "increment-version": "versiony package.json --patch && git add . && git commit -m 'new version' && git push",
     "build:deploy": "run increment-version && npm run deploy",
-
-	"save:api": "cd ../api && git add . && git commit -m 'save state' && git push",
-	"save:app": "git add . && git commit -m 'save state' && git push",
-	"save:src": "cd ../src && git add . && git commit -m 'save state' && git push",
-	"save:web": "cd ../web && git add . && git commit -m 'save state' && git push",
-	"save": "npm run save:api & npm run save:app & npm run save:src & npm run save:web"
+	
+	"save": "git add . && git commit -m 'save state' && git push"
   },
   "author": "AdsMarket",
   "build": {
