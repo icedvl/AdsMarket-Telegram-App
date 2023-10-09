@@ -18,7 +18,7 @@
 	"save:app": "git add . && git commit -m 'save state' && git push",
 	"save:src": "cd ../src && git add . && git commit -m 'save state' && git push",
 	"save:web": "cd ../web && git add . && git commit -m 'save state' && git push",
-	"save": "save:api && save:app && save:src && save:web"
+	"save": "npm run save:api & npm run save:app & npm run save:src & npm run save:web"
   },
   "author": "AdsMarket",
   "build": {
