@@ -31,7 +31,7 @@
       }
     ],
     "mac": {
-      "hardenedRuntime": true,
+      "hardenedRuntime": true, 
       "category": "Telegram, Marketing",
       "icon": "./images/app_icon_512x512.png"
     },

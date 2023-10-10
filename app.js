@@ -16,16 +16,16 @@ function createWindow() {
         width: 1400,
         height: 800,
         x: 0,
-        y: 0,
-        backgroundColor: '#121423',
+        y: 0, 
+        backgroundColor: 'rgba(18, 19, 28, 1)',
         webPreferences: {
             devTools: process.env.ENV === 'development',
             nodeIntegration: true,
-            contextIsolation: false,
+            contextIsolation: true,
         },
     });
     if (process.env.ENV === 'development') {
-        win.loadURL(`http://localhost:4000`);
+        win.loadURL(`http://127.0.0.1:4000`);
         win.webContents.openDevTools();
     } else {
         win.loadFile(__dirname + '/index.html');
