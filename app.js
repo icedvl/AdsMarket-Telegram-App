@@ -13,11 +13,10 @@ let win;
 function createWindow() {
     win = new BrowserWindow({
         show: false,
-        width: 1400,
-        height: 800,
+        width: 1800,
+        height: 850,
         x: 0,
-        y: 0, 
-        backgroundColor: 'rgba(18, 19, 28, 1)',
+        y: 0,
         webPreferences: {
             devTools: process.env.ENV === 'development',
             nodeIntegration: true,
