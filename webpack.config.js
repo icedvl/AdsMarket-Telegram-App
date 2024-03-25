@@ -5,7 +5,7 @@ module.exports = [
 		target: 'electron-main',
 		output: {
 			path: __dirname + '/dev',
-			filename: 'app.js',
+			filename: 'app.js'
 		}
 	},
 	{
@@ -14,7 +14,7 @@ module.exports = [
 		target: 'electron-main',
 		output: {
 			path: __dirname + '/pre_build',
-			filename: 'app.js'
+			filename: 'app.js',
 		}
 	}
 ];

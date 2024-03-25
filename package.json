@@ -1,57 +1,74 @@
 {
-  "name": "adsmarket-telegram",
-  "version": "1.0.0",
-  "description": "AdsMarket Telegram - Automate your promotion",
-  "private": "true",
-  "main": "./pre_build/app.js",
-  "scripts": {
-    "dev:watch": "NODE_ENV=development parcel build ../src/index.html --dist-dir ./dev --no-cache && NODE_ENV=development webpack watch --mode=development",
-    "dev:electron": "ENV=development nodemon --exec electron ./pre_build/app.js",
-
-    "build:client": "NODE_ENV=production parcel build ../src/index.html --dist-dir ./pre_build --no-cache",
-    "build:app": "NODE_ENV=production webpack build --mode=production",
-    "build:test": "npm run build:client && npm run build:app && electron-builder build --mac --dir && rm -r pre_build",
-    "build:only": "npm run pre_build && electron-builder build --mac --win --publish never && rm -r pre_build",
-
-    "deploy": "npm run pre_build && electron-builder build --mac --win --publish always && rm -r pre_build",
-    "increment-version": "versiony package.json --patch && git add . && git commit -m 'new version' && git push",
-    "build:deploy": "run increment-version && npm run deploy",
-	
-	"save": "git add . && git commit -m 'save state' && git push"
-  },
-  "author": "AdsMarket",
-  "build": {
-    "productName": "AdsMarket - Telegram",
-    "artifactName": "adsmarket-telegram-${version}-${os}-${arch}.${ext}",
-    "publish": [
-      {
-        "provider": "github",
-        "private": false,
-        "releaseType": "release"
-      }
-    ],
-    "mac": {
-      "hardenedRuntime": true, 
-      "category": "Telegram, Marketing",
-      "icon": "./images/app_icon_512x512.png"
-    },
-    "dmg": {
-      "sign": false
-    },
-    "win": {
-      "target": "nsis",
-      "icon": "./images/app_icon_256x256.png"
-    }
-  },
-  "devDependencies": {
-    "electron-builder": "^24.6.4",
-    "electron-log": "^4.4.8",
-    "electron-nightly": "^28.0.0-nightly.20231006",
-    "electron-updater": "^6.1.4",
-    "nodemon": "^3.0.1",
-    "parcel": "^2.9.3",
-    "versiony": "^2.0.1",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
-  }
+	"name": "adsmarket-telegram",
+	"version": "1.0.0",
+	"description": "AdsMarket Telegram - Automate your promotion",
+	"private": "true",
+	"main": "app.js",
+	"scripts": {
+		"dev:watch": "NODE_ENV=development parcel build ../src/index.html --dist-dir ./dev --no-cache && NODE_ENV=development webpack watch --mode=development",
+		"dev:electron": "ENV=development nodemon --exec electron ./pre_build/app.js",
+		"build:client": "NODE_ENV=production parcel build --public-url . ../src/index.html --dist-dir ./pre_build --no-cache",
+		"build:app": "NODE_ENV=production webpack build --mode=production",
+		"build:pre": "npm run build:client && npm run build:app",
+		"build:test": "npm run build:pre && electron-builder build --mac --dir && rm -r pre_build",
+		"build:only": "npm run build:pre && electron-builder build --mac --win --publish never && rm -r pre_build",
+		"deploy": "npm run build:pre && electron-builder build --mac --win --publish always && rm -r pre_build",
+		"increment-version": "versiony package.json --patch && git add . && git commit -m 'new version' && git push",
+		"build:deploy": "run increment-version && npm run deploy",
+		"save": "git add . && git commit -m 'save state' && git push"
+	},
+	"author": "AdsMarket",
+	"build": {
+		"files": [
+			"preload.js",
+			"server",
+			{
+				"from": "pre_build",
+				"filter": [
+					"**/*"
+				]
+			}
+		],
+		"directories": {
+			"buildResources": "./"
+		},
+		"productName": "AdsMarket - Telegram",
+		"artifactName": "adsmarket-telegram-${version}-${os}-${arch}.${ext}",
+		"publish": [
+			{
+				"provider": "github",
+				"private": false,
+				"releaseType": "release"
+			}
+		],
+		"mac": {
+			"hardenedRuntime": true,
+			"category": "Telegram, Marketing",
+			"icon": "./images/app_icon_512x512.png"
+		},
+		"dmg": {
+			"sign": false
+		},
+		"win": {
+			"target": "nsis",
+			"icon": "./images/app_icon_256x256.png"
+		}
+	},
+	"devDependencies": {
+		"electron": "^29.1.5",
+		"electron-builder": "^24.6.4",
+		"electron-log": "^4.4.8",
+		"electron-nightly": "^28.0.0-nightly.20231006",
+		"electron-updater": "^6.1.4",
+		"i": "^0.3.7",
+		"nodemon": "^3.0.1",
+		"npm": "^10.5.0",
+		"parcel": "^2.12.0",
+		"versiony": "^2.0.1",
+		"webpack": "^5.88.2",
+		"webpack-cli": "^5.1.4"
+	},
+	"dependencies": {
+		"path": "^0.12.7"
+	}
 }
