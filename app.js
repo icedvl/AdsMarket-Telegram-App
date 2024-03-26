@@ -1,17 +1,17 @@
-// import log from 'electron-log';
-// import { autoUpdater } from 'electron-updater';
+import log from 'electron-log';
+import { autoUpdater } from 'electron-updater';
 // import pkg from 'electron-updater';
 // const { autoUpdater } = pkg;
-// import { app, BrowserWindow, ipcMain } from 'electron';
-const { app, BrowserWindow, ipcMain } = require('electron')
-// import path from 'path';
-const path = require('path');
+import { app, BrowserWindow, ipcMain } from 'electron';
+// const { app, BrowserWindow, ipcMain } = require('electron')
+import path from 'path';
+// const path = require('path');
 
 
 
 
-// log.catchErrors()
-// log.info('AdsMarket starting...');
+log.catchErrors()
+log.info('AdsMarket starting...');
 
 
 // autoUpdater.logger = log;
@@ -26,6 +26,7 @@ function createWindow() {
 		x: 0,
 		y: 0,
 		webPreferences: {
+			webSecurity: false,
 			devTools: true,
 			// devTools: process.env.ENV === 'development',
 			contextIsolation: true,
@@ -74,15 +75,15 @@ ipcMain.on('app_version', async (event, data) => {
 
 
 // Check for updated
-// autoUpdater.checkForUpdatesAndNotify();
+autoUpdater.checkForUpdatesAndNotify();
 
-// autoUpdater.on('update-available', () => {
-//     win.webContents.send('update_available');
-// });
+autoUpdater.on('update-available', () => {
+    win.webContents.send('update_available');
+});
 
-// autoUpdater.on('update-downloaded', () => {
-//     win.webContents.send('update_downloaded');
-// });
+autoUpdater.on('update-downloaded', () => {
+    win.webContents.send('update_downloaded');
+});
 
 
 
