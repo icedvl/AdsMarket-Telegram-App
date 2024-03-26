@@ -1,6 +1,6 @@
 {
   "name": "adsmarket-telegram",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AdsMarket Telegram - Automate your promotion",
   "private": "true",
   "main": "app.js",
